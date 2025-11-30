@@ -150,4 +150,3 @@ def download_image(file_id: str):
     if not os.path.exists(path):
         return JSONResponse({"error": "File not found"}, status_code=404)
     return FileResponse(path, media_type="image/png", filename="compressed.png")
-```
