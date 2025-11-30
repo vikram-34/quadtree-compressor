@@ -54,7 +54,7 @@ async function compressImage() {
     formData.append("file", fileInput.files[0]);
 
     try {
-        const response = await fetch(`http://127.0.0.1:8000/compress-image?iterations=${iterations}`, {
+        const response = await fetch(`/compress-image?iterations=${iterations}`, {
             method: "POST",
             body: formData
         });
@@ -66,7 +66,7 @@ async function compressImage() {
         const data = await response.json();
 
         result.innerHTML = `
-            <a class="download-btn" href="http://127.0.0.1:8000${data.download_url}" download style="color: #00ffcc; text-decoration: none; margin-top:15px; display:block;">
+            <a class="download-btn" href="${data.download_url}" download style="color: #00ffcc; text-decoration: none; margin-top:15px; display:block;">
                 Download Compressed Image
             </a>
         `;
