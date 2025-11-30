@@ -253,7 +253,7 @@ def compress_image(file: UploadFile = File(...), iterations: int = 1000):
 
         # RESIZE: Max 512px (Free tier ke liye yahi safe hai)
         # Yeh step server crash hone se bachayega
-        img.thumbnail((512, 512))
+        img.thumbnail((1080, 1080))
         
         img_data = np.array(img)
 
