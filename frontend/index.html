@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Compressor</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Image Compressor</h1>
+
+        <label for="file" class="file-label">Choose Image</label>
+        <input type="file" id="file" />
+        
+        <div id="file-name" style="margin-top: 10px; color: #aaa; font-size: 0.9rem;">No file selected</div>
+
+        <input type="number" id="iterations" placeholder="Iterations (e.g., 2000)" />
+
+        <button class="btn" onclick="compressImage()">Compress</button>
+
+        <div id="result"></div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
