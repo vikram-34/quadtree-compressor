@@ -259,7 +259,7 @@ def compress_image(file: UploadFile = File(...), iterations: int = 1000):
 
         # 3. Process
         # Iterations ko limit karo (Max 3000)
-        safe_iterations = min(iterations, 3000)
+        safe_iterations = min(iterations, 15000)
         
         compressed_data = compress_image_data(img_data, safe_iterations)
 
