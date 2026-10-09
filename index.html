@@ -3,28 +3,133 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Image Compressor</title>
+    <meta name="theme-color" content="#f5f5ee" />
+    <meta name="description" content="A little less file. A lot more possibility. Explore quadtree image compression with a visual before-and-after studio." />
+    <title>Quadtree — A little less. A lot more.</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23d0f266'/%3E%3Cpath d='M7 7h8v8H7zm10 0h8v8h-8zM7 17h8v8H7zm10 0h3v3h-3zm5 0h3v3h-3zm-5 5h3v3h-3zm5 0h3v3h-3z' fill='%23263025'/%3E%3C/svg%3E" />
     <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
 </head>
-
 <body>
+    <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M5 19 19 5M5 5h14v14" /></symbol>
+        <symbol id="icon-image" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m3 17 5-5 4 4 4-6 5 7"/></symbol>
+        <symbol id="icon-download" viewBox="0 0 24 24"><path d="M12 3v13m-5-5 5 5 5-5M4 17v4h16v-4"/></symbol>
+        <symbol id="icon-split" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M12 4v16m-6-8h3m6 0h3"/></symbol>
+    </svg>
 
-    <div class="container">
-        <h1>Image Compressor</h1>
+    <a class="skip-link" href="#studio">Skip to compressor</a>
+    <header class="site-header page-width">
+        <a class="brand" href="./" aria-label="Quadtree home">
+            <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i class="mini-grid"><b></b><b></b><b></b><b></b></i></span>
+            <span>quadtree<span class="brand-period">.</span></span>
+        </a>
+        <nav class="main-nav" aria-label="Main navigation">
+            <a href="#studio" class="nav-active">The studio</a>
+            <a href="#how-it-works">How it works <span aria-hidden="true">↗</span></a>
+        </nav>
+        <span class="header-note"><span class="status-dot"></span> Less is a beautiful thing.</span>
+    </header>
 
-        <label for="file" class="file-label">Choose Image</label>
-        <input type="file" id="file" />
-        
-        <div id="file-name" style="margin-top: 10px; color: #aaa; font-size: 0.9rem;">No file selected</div>
+    <main class="page-width">
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="hero-copy">
+                <p class="eyebrow"><span class="tiny-cross" aria-hidden="true">✳</span> SMALLER FILES. BIGGER IDEAS.</p>
+                <h1 id="hero-title">A little less.<br />A lot <span class="serif-word">more.</span><span class="hero-asterisk" aria-hidden="true">✳</span></h1>
+            </div>
+            <div class="hero-aside">
+                <span class="outline-tag">THE IMAGE COMPRESSION STUDIO</span>
+                <p>Keep the character. Lose the weight.<br />Turn your images into something lighter,<br class="desktop-break" /> one clever little square at a time.</p>
+                <span class="hero-caption"><span class="small-quads" aria-hidden="true">▦</span> Powered by the art of quadtree.</span>
+            </div>
+        </section>
 
-        <input type="number" id="iterations" placeholder="Iterations (e.g., 2000)" />
+        <section id="studio" class="studio" aria-labelledby="studio-title">
+            <div class="section-heading">
+                <h2 id="studio-title">YOUR CREATIVE WORKSPACE</h2>
+                <span>Good things come in smaller files <span aria-hidden="true">↙</span></span>
+            </div>
+            <div class="workspace">
+                <form id="compress-form" class="control-panel" novalidate>
+                    <fieldset id="controls">
+                        <legend class="sr-only">Image compression settings</legend>
+                        <div class="step-heading"><span class="step-number">01</span><h3>Make an entrance</h3></div>
+                        <div class="upload-zone" id="drop-zone">
+                            <input type="file" id="file" accept="image/png,image/jpeg,image/webp,image/bmp" aria-label="Choose an image to compress" aria-describedby="upload-help" />
+                            <div id="upload-empty" class="upload-content">
+                                <span class="upload-art" aria-hidden="true"><svg class="icon"><use href="#icon-image"/></svg><span class="upload-plus">+</span></span>
+                                <strong>Drop your image here</strong>
+                                <span>or <span class="text-link">browse files <span aria-hidden="true">↗</span></span></span>
+                                <small id="upload-help">JPG, PNG, WEBP or BMP</small>
+                            </div>
+                            <div id="upload-selected" class="upload-content" hidden>
+                                <img id="file-thumbnail" alt="Selected image thumbnail" />
+                                <strong id="file-name"></strong>
+                                <small id="file-info"></small>
+                                <span class="text-link">Choose a different image ↗</span>
+                            </div>
+                        </div>
+                        <div class="sample-row"><span>No image handy?</span><button id="sample-button" class="text-button" type="button">Try our sample <span aria-hidden="true">↗</span></button></div>
+                        <div class="control-divider"></div>
+                        <div class="step-heading"><span class="step-number">02</span><h3>Find your balance</h3></div>
+                        <div class="preset-group" role="group" aria-label="Compression quality presets">
+                            <button type="button" data-iterations="500" aria-pressed="false"><span class="preset-glyph" aria-hidden="true">◻</span>Smaller</button>
+                            <button type="button" data-iterations="2000" aria-pressed="true"><span class="preset-glyph" aria-hidden="true">▦</span>Balanced</button>
+                            <button type="button" data-iterations="8000" aria-pressed="false"><span class="preset-glyph" aria-hidden="true">▩</span>Detailed</button>
+                        </div>
+                        <div class="iteration-heading"><label for="iterations">Detail iterations</label><div class="number-wrapper"><input type="number" id="iterations" min="1" max="15000" step="1" value="2000" inputmode="numeric" aria-describedby="quality-help" /></div></div>
+                        <label for="quality-slider" class="sr-only">Adjust detail iterations</label>
+                        <input id="quality-slider" type="range" min="1" max="15000" step="1" value="2000" />
+                        <div class="range-labels"><span>Less detail</span><span>More detail</span></div>
+                        <p id="quality-help" class="setting-help">The sweet spot for detail and file size.</p>
+                        <div class="output-note"><svg class="icon"><use href="#icon-image"/></svg><span>PNG output <span aria-hidden="true">·</span> Up to 1080 × 1080 px</span></div>
+                        <button id="compress-button" class="primary-button" type="submit"><span id="compress-label">Compress image</span><svg class="icon button-arrow"><use href="#icon-arrow"/></svg><span class="button-spinner" hidden></span></button>
+                    </fieldset>
+                    <p id="status" class="status-message" role="status" aria-live="polite">Your next lighter image starts here.</p>
+                    <p id="error" class="error-message" role="alert" hidden></p>
+                </form>
 
-        <button class="btn" onclick="compressImage()">Compress</button>
+                <div class="preview-panel">
+                    <div class="preview-toolbar">
+                        <div class="preview-title"><span class="status-dot"></span><h3>The bigger picture</h3></div>
+                        <div class="view-switch" role="group" aria-label="Preview mode">
+                            <button type="button" data-view="original" aria-pressed="false">Original</button>
+                            <button type="button" data-view="compare" aria-pressed="true">Compare</button>
+                            <button type="button" data-view="result" aria-pressed="false" disabled>Result</button>
+                        </div>
+                    </div>
+                    <div id="image-viewer" class="image-viewer" data-mode="compare" aria-busy="false">
+                        <img id="original-image" class="preview-image" src="/static/temp_1st_test.jpg" alt="Sample: a sunlit mountain surrounded by clouds" />
+                        <canvas id="demo-canvas" class="preview-image after-image" aria-label="Illustration of the quadtree effect on the sample mountain"></canvas>
+                        <img id="result-image" class="preview-image after-image" alt="Compressed version of your image" hidden />
+                        <span class="image-label original-label">ORIGINAL</span>
+                        <span id="after-label" class="image-label after-label">QUADTREE EFFECT</span>
+                        <span id="preview-badge" class="preview-badge">ILLUSTRATIVE PREVIEW</span>
+                        <div class="compare-line" aria-hidden="true"><span class="compare-handle">‹<span></span>›</span></div>
+                        <input id="compare-slider" class="compare-slider" type="range" min="0" max="100" value="50" aria-label="Before and after comparison" aria-valuetext="50% original, 50% quadtree effect" />
+                        <div id="processing-overlay" class="processing-overlay" hidden><div class="processing-quads" aria-hidden="true"><i></i><i></i><i></i><i></i></div><strong>Finding the beauty in less.</strong><span id="processing-caption">Your quadtree is taking shape…</span></div>
+                        <div id="empty-preview" class="empty-preview" hidden><svg class="icon"><use href="#icon-image"/></svg><strong>A fresh canvas.</strong><span>Choose an image to get started.</span></div>
+                    </div>
+                    <div class="preview-caption"><span id="preview-hint"><svg class="icon"><use href="#icon-split"/></svg> Slide to explore the quadtree effect</span><button type="button" id="reset-button" class="text-button" hidden>Start fresh <span aria-hidden="true">↺</span></button><span id="demo-label">A LITTLE DEMO</span></div>
+                    <div id="result" class="result-panel" aria-label="Compression results">
+                        <div class="stat"><span>ORIGINAL SIZE</span><strong id="original-size">—<small>awaiting image</small></strong></div>
+                        <div class="stat"><span>COMPRESSED SIZE</span><strong id="compressed-size">—<small>the lighter side</small></strong></div>
+                        <div class="stat saved-stat"><span id="savings-label">SIZE DIFFERENCE</span><strong id="savings">—<small>let’s find out</small></strong></div>
+                        <a id="download-button" class="download-button" aria-disabled="true" tabindex="-1"><svg class="icon"><use href="#icon-download"/></svg><span>Download PNG</span></a>
+                    </div>
+                    <p id="result-note" class="result-note">A visual experiment in doing more with less. Upload an image to get your actual result.</p>
+                </div>
+            </div>
+        </section>
 
-        <div id="result"></div>
-    </div>
-
-    <script src="script.js"></script>
-
+        <section id="how-it-works" class="how-section" aria-labelledby="how-title">
+            <div class="how-intro"><span class="eyebrow">SMALL SQUARES. SMART THINKING.</span><h2 id="how-title">A little method<br />to the <em>magic.</em></h2><a class="text-button" href="#studio">Let’s make something lighter <span aria-hidden="true">↗</span></a></div>
+            <article class="how-step"><div class="how-art art-one" aria-hidden="true"><span></span></div><h3><span>01 /</span> See the bigger picture</h3><p>Your image starts as one square. Quadtree looks for the places where the detail lives.</p></article>
+            <article class="how-step"><div class="how-art art-two" aria-hidden="true"><span></span><span></span><span></span><span></span></div><h3><span>02 /</span> Divide. Refine. Repeat.</h3><p>Complex regions split into smaller blocks. More iterations bring more of those details back.</p></article>
+            <article class="how-step"><div class="how-art art-three" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><h3><span>03 /</span> A different kind of light</h3><p>Get a fresh PNG, compare the result, and find your balance. File savings vary with every image.</p></article>
+        </section>
+    </main>
+    <footer class="site-footer page-width"><a class="footer-brand" href="./">quadtree.</a><span>A little less data. A little more possibility.</span><a href="#studio">Back to the studio <span aria-hidden="true">↑</span></a></footer>
+    <noscript><p class="noscript-notice">Please enable JavaScript to upload and compress images.</p></noscript>
 </body>
 </html>
