@@ -21,7 +21,8 @@ This is **lossy, quadtree-based image processing**: the algorithm approximates i
 
 ## Demo Video
 
-*A walkthrough of the live website will be added here.*
+
+[Watch the live demo](https://github.com/user-attachments/assets/5523790a-ee99-48b2-a9a3-893e124f9c37)
 
 <!-- DEMO VIDEO: Replace the placeholder above with your GitHub-uploaded video URL.
 Edit this README on GitHub and drag your video into the editor, or paste the
