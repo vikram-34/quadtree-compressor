@@ -1,0 +1,18 @@
+# Python-generated files
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local virtual environments
+.venv/
+venv/
+
+# Temporary image uploads and generated results (the app creates its directories)
+/uploads/
+/outputs/
+/compressed_files/
+
+# Local configuration; allow a documented example if one is added
+.env
+.env.*
+!.env.example
